@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+outputs/
+logs/
+*.onnx
+*.mp4
+# machine-specific settings (hosts, paths, partitions) stay local
+cluster.local.env
