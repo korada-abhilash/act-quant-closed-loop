@@ -13,7 +13,7 @@ source "$CONDA_ROOT/etc/profile.d/conda.sh"
 conda activate act-quant
 export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}"
 export MUJOCO_GL=egl
-echo "CKPT=$CKPT ACT_ONNX=${ACT_ONNX:-<pytorch>} SEED=${SEED:-2000} N_EPISODES=${N_EPISODES:-100}"
+echo "CKPT=$CKPT ACT_ONNX=${ACT_ONNX:-<pytorch>} ACT_NOISE_STD=${ACT_NOISE_STD:-0} SEED=${SEED:-2000} N_EPISODES=${N_EPISODES:-100}"
 
 python -m act_onnx.eval_closed_loop \
   --policy.path="$CKPT" \
