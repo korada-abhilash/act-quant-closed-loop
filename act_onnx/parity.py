@@ -7,6 +7,7 @@ Errors are reported in normalized units (what the network outputs) and in action
 
 import argparse
 import json
+import os
 
 import numpy as np
 import onnxruntime as ort
@@ -43,7 +44,9 @@ def main():
     net = ACTInference(policy.model).eval()
     states, images = load_normalized_frames(pre, frame_indices(N_FRAMES, args.n, PARITY_OFFSET))
 
-    sess = ort.InferenceSession(args.onnx, providers=["CPUExecutionProvider"])
+    opts = ort.SessionOptions()
+    opts.intra_op_num_threads = int(os.environ.get("SLURM_CPUS_PER_TASK", "0"))
+    sess = ort.InferenceSession(args.onnx, opts, providers=["CPUExecutionProvider"])
     ref, out = [], []
     for i in range(0, len(states), args.batch):
         s, im = states[i : i + args.batch], images[i : i + args.batch]
