@@ -11,4 +11,5 @@ conda install -y -c conda-forge ffmpeg=7
 # LeRobot 0.6.1 expects CUDA 12.8 torch wheels (works with NVIDIA driver >= 570).
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 pip install "lerobot[aloha,training]==0.6.1"
+pip install onnx onnxruntime onnxscript
 pip freeze > requirements.lock.txt
